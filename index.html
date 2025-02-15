@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="/src/css/root.css">
 </head>
 <body>
+
+    <div class="game-container">
+        <h1>Guess the Number</h1>
+        <p>I'm thinking of a number between 1 and 100.</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button onclick="checkGuess()">Guess</button>
+        <p id="message"></p>
+    </div>
     
-    <link rel="stylesheet" href="/src/js/main.js">
+    <script src="/src/js/main.js"></script>
 </body>
 </html>
