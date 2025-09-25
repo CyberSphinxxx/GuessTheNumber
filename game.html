@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumberMind - Ultimate Guessing Game</title>
+    <link rel="stylesheet" href="/src/css/game.css">
+</head>
+<body>
+    <div class="game-container">
+        <header class="header">
+            <div class="logo">NumberMind</div>
+            <nav>
+                <ul class="nav-items">
+                    <li><a href="#game">Game</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                🌙
+            </button>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Difficulty</h3>
+                <div class="difficulty-info">
+                    <div id="difficultyInfo">
+                        <strong>Easy Mode</strong><br>
+                        Range: 1-50<br>
+                        Max Attempts: 10<br>
+                        Hints: 3 available
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Hints</h3>
+                <div class="hint-section">
+                    <button class="hint-btn" onclick="useHint('range')">Narrow Range</button>
+                    <button class="hint-btn" onclick="useHint('parity')">Even/Odd</button>
+                    <button class="hint-btn" onclick="useHint('proximity')">Hot/Cold</button>
+                    <div id="hintDisplay" style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);"></div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Game History</h3>
+                <div id="gameHistory" class="leaderboard">
+                    <div class="leaderboard-item">
+                        <span>Game #1</span>
+                        <span>7 attempts</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-game">
+            <div class="celebration" id="celebration"></div>
+            
+            <h1 class="game-title">Guess the Number</h1>
+            <p class="game-subtitle">Test your intuition and logical thinking</p>
+
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" onclick="setDifficulty('easy')">Easy</button>
+                <button class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
+                <button class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+                <button class="difficulty-btn" onclick="setDifficulty('expert')">Expert</button>
+            </div>
+
+            <div class="input-section">
+                <input type="number" id="guessInput" class="guess-input" placeholder="?" min="1" max="50">
+                <button class="guess-btn" onclick="makeGuess()">Make Guess</button>
+            </div>
+
+            <div class="feedback-area">
+                <div id="feedbackMessage" class="feedback-message">Make your first guess!</div>
+                <div id="feedbackHint" class="feedback-hint">I'm thinking of a number between 1 and 50</div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="range-display">
+                    <span id="rangeMin">1</span>
+                    <span id="rangeMax">50</span>
+                </div>
+            </div>
+        </main>
+
+        <aside class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-number" id="currentAttempts">0</div>
+                <div class="stat-label">Current Attempts</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="bestScore">-</div>
+                <div class="stat-label">Best Score</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="gamesPlayed">0</div>
+                <div class="stat-label">Games Played</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="winRate">0%</div>
+                <div class="stat-label">Win Rate</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="currentStreak">0</div>
+                <div class="stat-label">Win Streak</div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/src/js/game.js"></script>
+</body>
+</html>

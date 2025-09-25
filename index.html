@@ -3,19 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GuessTheNumber</title>
-    <link rel="stylesheet" href="/src/css/root.css">
+    <title>NumberMind - Ultimate Number Guessing Game</title>
+    <link rel="stylesheet" href="/src/css/index.css">
 </head>
 <body>
+    <div class="hero-container">
+        <header class="header">
+            <div class="logo">NumberMind</div>
+            <nav>
+                <ul class="nav-items">
+                    <li><a href="index.html">Game</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                🌙
+            </button>
+        </header>
 
-    <div class="game-container">
-        <h1>Guess the Number</h1>
-        <p>I'm thinking of a number between 1 and 100.</p>
-        <input type="number" id="guessInput" min="1" max="100">
-        <button onclick="checkGuess()">Guess</button>
-        <p id="message"></p>
+        <main class="hero-main">
+            <div class="hero-content">
+                <h1 class="hero-title">Master the Art of Number Guessing</h1>
+                <p class="hero-subtitle">Challenge your intuition with the ultimate number guessing experience</p>
+                <p class="hero-description">
+                    NumberMind combines strategy, logic, and intuition in an engaging game that adapts to your skill level. 
+                    With multiple difficulty modes, intelligent hints, and comprehensive statistics tracking, 
+                    it's more than just guessing—it's about mastering the numbers.
+                </p>
+                <div class="cta-buttons">
+                    <a href="game.html" class="cta-primary">
+                        🎮 Start Playing
+                    </a>
+                    <a href="statistics.html" class="cta-secondary">
+                        📊 View Stats
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="game-preview">
+                    <h3 class="preview-title">Quick Preview</h3>
+                    <input type="number" class="preview-input" placeholder="Enter your guess..." readonly>
+                    <button class="preview-button">Make Guess</button>
+                    <div class="preview-stats">
+                        <div class="preview-stat">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Attempts</div>
+                        </div>
+                        <div class="preview-stat">
+                            <div class="stat-number">85%</div>
+                            <div class="stat-label">Win Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <section class="features-section">
+            <div class="features-container">
+                <h2 class="features-title">Why Choose NumberMind?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Multiple Difficulty Levels</h3>
+                        <p class="feature-description">
+                            From Easy (1-50) to Expert (1-500), challenge yourself at your perfect skill level
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3 class="feature-title">Smart Hint System</h3>
+                        <p class="feature-description">
+                            Strategic hints including range narrowing, parity clues, and proximity feedback
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3 class="feature-title">Comprehensive Statistics</h3>
+                        <p class="feature-description">
+                            Track your progress with detailed stats, win rates, streaks, and personal bests
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3 class="feature-title">Achievement System</h3>
+                        <p class="feature-description">
+                            Unlock achievements and compete on leaderboards to showcase your skills
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 class="feature-title">Beautiful Interface</h3>
+                        <p class="feature-description">
+                            Modern, responsive design with dark/light themes and smooth animations
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Instant Feedback</h3>
+                        <p class="feature-description">
+                            Real-time visual feedback, celebrations, and progress tracking keep you engaged
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    
-    <script src="/src/js/main.js"></script>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const toggleBtn = document.querySelector('.theme-toggle');
+            toggleBtn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const root = document.documentElement;
+            root.setAttribute('data-theme', savedTheme);
+            
+            const toggleBtn = document.querySelector('.theme-toggle');
+            toggleBtn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+    </script>
 </body>
 </html>

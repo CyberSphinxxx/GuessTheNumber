@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - NumberMind</title>
+    <link rel="stylesheet" href="/src/css/settings.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">NumberMind</div>
+            <nav>
+                <ul class="nav-items">
+                    <li><a href="game.html">Home</a></li>
+                    <li><a href="index.html">Game</a></li>
+                    <li><a href="statistics.html">Statistics</a></li>
+                    <li><a href="leaderboard.html">Leaderboard</a></li>
+                    <li><a href="settings.html" class="active">Settings</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                🌙
+            </button>
+        </header>
+
+        <h1 class="page-title">Settings</h1>
+
+        <div class="settings-grid">
+            <div class="settings-card">
+                <h2 class="card-title">👤 Profile</h2>
+                <div class="profile-section">
+                    <div class="profile-avatar" id="profileAvatar">NM</div>
+                    <div class="profile-info">
+                        <div class="profile-name" id="profileName">NumberMind Player</div>
+                        <div class="profile-stats" id="profileStats">Member since today</div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Display Name</div>
+                        <div class="setting-description">Your name shown on leaderboards</div>
+                        <input type="text" class="input-field" id="displayName" placeholder="Enter your name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2 class="card-title">🎮 Game Preferences</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Sound Effects</div>
+                        <div class="setting-description">Play sounds for game actions</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this, 'soundEffects')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Animations</div>
+                        <div class="setting-description">Enable celebration animations</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this, 'animations')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Auto-focus Input</div>
+                        <div class="setting-description">Automatically focus the guess input</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this, 'autoFocus')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Default Difficulty</div>
+                        <div class="setting-description">Starting difficulty for new games</div>
+                    </div>
+                    <div class="setting-control">
+                        <select class="select-control" id="defaultDifficulty" onchange="updateSetting('defaultDifficulty', this.value)">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2 class="card-title">🎨 Appearance</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Theme</div>
+                        <div class="setting-description">Choose your preferred color scheme</div>
+                    </div>
+                    <div class="setting-control">
+                        <select class="select-control" id="themeSelect" onchange="changeTheme(this.value)">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Reduced Motion</div>
+                        <div class="setting-description">Minimize animations for accessibility</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch" onclick="toggleSetting(this, 'reducedMotion')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Font Size</div>
+                        <div class="setting-description">Adjust text size for better readability</div>
+                    </div>
+                    <div class="setting-control" style="display: flex; align-items: center;">
+                        <input type="range" class="range-control" min="12" max="20" value="16" id="fontSize" onchange="updateFontSize(this.value)">
+                        <span class="range-value" id="fontSizeValue">16px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2 class="card-title">📊 Data & Privacy</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Save Statistics</div>
+                        <div class="setting-description">Store your game statistics locally</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this, 'saveStats')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Game History</div>
+                        <div class="setting-description">Keep track of your recent games</div>
+                    </div>
+                    <div class="setting-control">
+                        <div class="toggle-switch active" onclick="toggleSetting(this, 'saveHistory')">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="exportData()">
+                        📤 Export Data
+                    </button>
+                    <button class="btn btn-secondary" onclick="importData()">
+                        📥 Import Data
+                    </button>
+                    <button class="btn btn-danger" onclick="clearAllData()">
+                        🗑️ Clear All Data
+                    </button>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h2 class="card-title">ℹ️ About</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Version</div>
+                        <div class="setting-description">NumberMind v2.0.0</div>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <div class="setting-name">Last Updated</div>
+                        <div class="setting-description">December 2024</div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <a href="#" class="btn btn-secondary">📖 Help & Tutorial</a>
+                    <a href="#" class="btn btn-secondary">🐛 Report Bug</a>
+                    <a href="#" class="btn btn-secondary">⭐ Rate Game</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/src/js/settings.js"> </script>
+</body>
+</html>
